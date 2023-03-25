@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./style.css">
+    <title>Adopt Me V8</title>
+</head>
+<body>
+    <div id ="root">Not Rendered</div>
+    <script src="https://unpkg.com/react@18.2.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+    <script type = "module" src = './App.jsx'>
+    //vite requires jsx, so we use jsx here
+    //   // Your code is going to go here
+    //   const App = () => {
+    //     //jsx calls react.createElement for you, this is just shown 
+    //     //so that you don't think it's a black box. if you look at call 
+    //     //stack there are a bunch of these
+    //     return React.createElement(
+    //         //type of html element: p, div, h1, etc
+    //         "div",
+    //         //attributes like id or classname go here, or null 
+    //         {},
+    //         //children go here
+    //         React.createElement("h1", {}, "Adopt Me!")
+    //     )
+    //   }
+
+    //   const container = document.getElementById('root');
+    //   //old way before 18 ReactDOM.render(container, <App />)
+    //   //this is new API to render in R18 with concurrency
+    //   const root = ReactDOM.createRoot(container);
+    //   root.render(React.createElement(App))
+    </script>
+</body>
+</html>
