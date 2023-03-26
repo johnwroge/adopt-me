@@ -1,30 +1,24 @@
-
-import React from 'react';
-import { createRoot } from 'react-dom/client';
-// import Pet from './Pet';
-import SearchParams from './SearchParams';
+import { createRoot } from "react-dom/client";
+import SearchParams from "./SearchParams";
+import { Link, BrowserRouter, Routes, Route } from "react-router-dom";
+import Details from "./Details";
 
 const App = () => {
-
+  //to change to strict mode, wrap the app in <StrictMode></StrictMode> sends notifications.
   return (
-    <div>
-      <h1> Adopt Me! </h1>
-      <SearchParams />
-      {/* <Pet name = "Luna" animal = "dog" breed = "Havanese"/>
-      <Pet name = "Pepper" animal = "bird" breed = "Cockatiel"/>
-      <Pet name = "Doink" animal = "cat" breed = "Mixed"/> */}
-    </div>
-  )
+    <BrowserRouter>
+      <header>
+        <Link to="/"> Adopt Me! </Link>
+      </header>
+      <Routes>
+        <Route path="/details/:id" element={<Details />} />
+        <Route path="/" element={<SearchParams />} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
 
-}
-
-
-
-
-
-
-
-//built to appease php backend devs, 
+//built to appease php backend devs,
 // Your code is going to go here
 // const App = () => {
 //   //jsx calls react.createElement for you, this is just shown
@@ -63,4 +57,4 @@ const container = document.getElementById("root");
 
 //tree shaking live code inclusion is better, eliminates unnecessary code
 const root = createRoot(container);
-root.render(React.createElement(App));
+root.render(<App />);
