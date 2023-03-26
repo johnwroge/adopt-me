@@ -1,19 +1,40 @@
 import { createRoot } from "react-dom/client";
 import SearchParams from "./SearchParams";
 import { Link, BrowserRouter, Routes, Route } from "react-router-dom";
+//these provide context to display
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import AdoptedPetContext from "./AdoptedPetContext";
 import Details from "./Details";
+import { useState } from 'react'
+//instantiate query client
+//once you fetch it, don't refetch again (Infinity)
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: Infinity,
+      cacheTime: Infinity,
+    },
+  },
+});
 
 const App = () => {
   //to change to strict mode, wrap the app in <StrictMode></StrictMode> sends notifications.
+  //browserrouter and queryclientprovider already use context under hood! adoptedPet is value
+  //and function to update value (read and write)
+  const adoptedPet = useState(null);
   return (
     <BrowserRouter>
-      <header>
-        <Link to="/"> Adopt Me! </Link>
-      </header>
-      <Routes>
-        <Route path="/details/:id" element={<Details />} />
-        <Route path="/" element={<SearchParams />} />
-      </Routes>
+      <QueryClientProvider client = {queryClient}>
+        <AdoptedPetContext.Provider value = {adoptedPet}> 
+        <header>
+          <Link to="/"> Adopt Me! </Link>
+        </header>
+        <Routes>
+          <Route path="/details/:id" element={<Details />} />
+          <Route path="/" element={<SearchParams />} />
+        </Routes>
+        </AdoptedPetContext.Provider>
+      </QueryClientProvider>
     </BrowserRouter>
   );
 };
